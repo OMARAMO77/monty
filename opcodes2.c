@@ -19,3 +19,16 @@ void add(stack_t **stack, unsigned int line_number)
 	(*stack)->next->n += (*stack)->n;
 	pop(stack, line_number);
 }
+
+/**
+* nop - aa
+* @stack: a
+* @line_number: aa
+* Return: nt
+*/
+
+void nop(stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+	(void)line_number;
+}
