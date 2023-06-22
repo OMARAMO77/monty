@@ -33,12 +33,15 @@ void push(stack_t **stack, int value)
 /**
 * pall - aa
 * @stack: a
+* @line_number: a
+
 * Return: nth
 */
 
-void pall(stack_t **stack)
+void pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *current = *stack;
+	(void) line_number;
 
 	while (current != NULL)
 	{
