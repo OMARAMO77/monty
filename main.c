@@ -19,15 +19,14 @@ int main(int argc, char *argv[])
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 	file = fopen(argv[1], "r");
 	if (file == NULL)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		return (EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
-
 	while (fgets(line, MAX_LINE_LENGTH, file) != NULL)
 	{
 		line_number++;
@@ -50,7 +49,7 @@ int main(int argc, char *argv[])
 			push(&stack, value);
 		}
 		else if (strcmp(opcode, "pall") == 0)
-			pall(&stack);
+			pall(&stack, line_number);
 		else if (strcmp(opcode, "pint") == 0)
 			pint(&stack, line_number);
 		else if (strcmp(opcode, "pop") == 0)
