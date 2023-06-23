@@ -39,3 +39,22 @@ void print_char(stack_t **stack, unsigned int line_number)
 	putchar(value);
 	putchar('\n');
 }
+
+/**
+ * print_str - aa
+ * @stack: aa
+ * @line_number: aa
+ * Return: nt
+ */
+void print_str(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current = *stack;
+	(void)line_number;
+
+	while (current != NULL && current->n != 0 && (current->n >= 0 && current->n <= 127))
+	{
+		putchar(current->n);
+		current = current->next;
+	}
+	putchar('\n');
+}
