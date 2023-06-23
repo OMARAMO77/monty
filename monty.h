@@ -50,5 +50,6 @@ void nop(stack_t **stack, unsigned int line_number);
 void (*select_op(char *str))(stack_t **, unsigned int);
 void free_stack(stack_t *stack);
 int main(int argc, char *argv[]);
+void sub(stack_t **stack, unsigned int line_number);
 
 #endif
