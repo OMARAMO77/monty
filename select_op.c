@@ -23,6 +23,7 @@ void (*select_op(char *str))(stack_t **, unsigned int)
 		{"mod", module},
 		{"pchar", print_char},
 		{"pstr", print_str},
+		{"rotl", rot_to_top},
 		{NULL, NULL}
 	};
 	int i = 0;
