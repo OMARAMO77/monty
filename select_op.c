@@ -24,6 +24,7 @@ void (*select_op(char *str))(stack_t **, unsigned int)
 		{"pchar", print_char},
 		{"pstr", print_str},
 		{"rotl", rot_to_top},
+		{"rotr", rot_to_bottom},
 		{NULL, NULL}
 	};
 	int i = 0;
