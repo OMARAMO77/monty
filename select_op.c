@@ -18,6 +18,7 @@ void (*select_op(char *str))(stack_t **, unsigned int)
 		{"add", add},
 		{"nop", nop},
 		{"sub", sub},
+		{"div", divide},
 		{NULL, NULL}
 	};
 	int i = 0;
