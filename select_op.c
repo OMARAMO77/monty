@@ -20,6 +20,7 @@ void (*select_op(char *str))(stack_t **, unsigned int)
 		{"sub", sub},
 		{"div", divide},
 		{"mul", multiply},
+		{"mod", module},
 		{NULL, NULL}
 	};
 	int i = 0;
