@@ -21,6 +21,7 @@ void (*select_op(char *str))(stack_t **, unsigned int)
 		{"div", divide},
 		{"mul", multiply},
 		{"mod", module},
+		{"pchar", print_char},
 		{NULL, NULL}
 	};
 	int i = 0;
