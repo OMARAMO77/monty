@@ -11,11 +11,12 @@ int main(int argc, char *argv[])
 {
 	unsigned int line_number = 0;
 	char line[MAX_LINE_LENGTH];
-	char *opcode, *arg;
+	char *opcode = NULL, *arg;
 	FILE *file;
 	int value;
 	stack_t *stack = NULL;
-	
+	void (*op_func)(stack_t **, unsigned int);
+
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -30,11 +31,16 @@ int main(int argc, char *argv[])
 	while (fgets(line, MAX_LINE_LENGTH, file) != NULL)
 	{
 		line_number++;
-
 		opcode = strtok(line, " \t\n");
 		if (opcode == NULL || opcode[0] == '#')
+			continue; /* Skip empty lines and comments */
+		op_func = select_op(opcode);
+		if (op_func == NULL)
 		{
-			continue;  /*Skip empty lines and comments*/
+			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+			fclose(file);
+			free_stack(stack);
+			exit(EXIT_FAILURE);
 		}
 		if (strcmp(opcode, "push") == 0)
 		{
@@ -43,31 +49,16 @@ int main(int argc, char *argv[])
 			{
 				fprintf(stderr, "L%u: usage: push integer\n", line_number);
 				fclose(file);
-				return (EXIT_FAILURE);
+				free_stack(stack);
+				exit(EXIT_FAILURE);
 			}
 			value = atoi(arg);
 			push(&stack, value);
 		}
-		else if (strcmp(opcode, "pall") == 0)
-			pall(&stack, line_number);
-		else if (strcmp(opcode, "pint") == 0)
-			pint(&stack, line_number);
-		else if (strcmp(opcode, "pop") == 0)
-			pop(&stack, line_number);
-		else if (strcmp(opcode, "swap") == 0)
-			swap(&stack, line_number);
-		else if (strcmp(opcode, "add") == 0)
-			add(&stack, line_number);
-		else if (strcmp(opcode, "nop") == 0)
-			nop(&stack, line_number);
 		else
-		{
-			fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
-			fclose(file);
-			return (EXIT_FAILURE);
-		}
+			op_func(&stack, line_number);
 	}
 	fclose(file);
-	/*Free the remaining stack (if any)*/
+	free_stack(stack);
 	return (EXIT_SUCCESS);
 }
