@@ -55,5 +55,6 @@ void divide(stack_t **stack, unsigned int line_number);
 void multiply(stack_t **stack, unsigned int line_number);
 void module(stack_t **stack, unsigned int line_number);
 void print_char(stack_t **stack, unsigned int line_number);
+void print_str(stack_t **stack, unsigned int line_number);
 
 #endif
